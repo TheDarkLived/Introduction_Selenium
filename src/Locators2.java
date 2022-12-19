@@ -10,14 +10,15 @@ import org.testng.Assert;
 public class Locators2 {
 	
 	public static void main(String[] args) throws InterruptedException {
-		// TODO Auto-generated method stub
+	
+		// Se loguea como usuario (no admin) correctamente
 
 		// Similar al archivo Locators, probando cosas de distinta forma
 		WebDriver driver = new ChromeDriver();
 		driver.get("https://rahulshettyacademy.com/loginpagePractise/");
 		
-		driver.findElement(By.cssSelector("input[id='username']")).sendKeys("marc");
-		driver.findElement(By.cssSelector("input[id='password']")).sendKeys("contraseñaaa");
+		driver.findElement(By.cssSelector("input[id='username']")).sendKeys("rahulshettyacademy");
+		driver.findElement(By.cssSelector("input[id='password']")).sendKeys("learning");
 		
 		// Se clica un checkbox
 		driver.findElement(By.id("terms")).click();
@@ -29,20 +30,17 @@ public class Locators2 {
 		// Sirve sobretodo si hay cosas de la página que nada más cargar aún no aparecen (un botón, ... Para mensajes de error, mejor usar implicitlyWait)
 		
 		// Si hay algo escrito en el input, lo borra
-		driver.findElement(By.cssSelector("input[id='password']")).clear();
+		//driver.findElement(By.cssSelector("input[id='password']")).clear();
 		
 		// Si hay varios elementos que se llaman igual (por ejemplo 2 inputs y los 2 tienen como nombre de clase "checkmark"), puedes indicar a cual te refieres poniendo [] al final
 		driver.findElement(By.xpath("(//span[@class='checkmark'])[2]")).click();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		
+		// Espera 3 segundos (para que se abra el pop-up) y entonces clica al botón
+		Thread.sleep(3000);
 		driver.findElement(By.xpath("(//button[@id='okayBtn'])")).click();
 		
-		
-		//Thread.sleep(7000);
-		//driver.findElement(By.xpath("//input[contains(@class,'btn')]")).click();
-		
-		//Assert.assertEquals(false, null);
-		
-		
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("(//input[@id='signInBtn'])")).click();
 	
 	}
 
